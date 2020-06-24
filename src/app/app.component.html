@@ -55,7 +55,11 @@
 </div>
 
 <div class="content" role="main">
+
+  <app-todo-tasks-app-card *ngIf="router.url == '/'"></app-todo-tasks-app-card>
+  <router-outlet></router-outlet>
+
+
 </div>
 
 
-<router-outlet></router-outlet>
