@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { TodoListContainerComponent } from './containers/todo-list-container/todo-list-container.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoService } from './services/todo.service';
 
 const routes: Routes = [
     { path: '', component: TodoListContainerComponent}
@@ -12,11 +12,11 @@ const routes: Routes = [
 
 
 @NgModule({
-    declarations: [],
+    declarations: [TodoListComponent, TodoListContainerComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
     ],
-    providers: []
+    providers: [TodoService]
 })
 export class TodoListModule { }

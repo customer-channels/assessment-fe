@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Todo } from '../../models/todo';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-list-container',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListContainerComponent implements OnInit {
 
-  constructor() { }
+  loading$: Observable<boolean>;
+  entities$: Observable<Todo[]>;
 
-  ngOnInit(): void {
+  constructor(private todoService: TodoService) {
+    this.entities$ = todoService.entities$;
+    this.loading$ = todoService.loading$;
+  }
+
+  ngOnInit() {
+    this.getAll();
+  }
+
+  add(todo: Todo) {
+    this.todoService.add(todo);
+  }
+
+  delete(todo: Todo) {
+    this.todoService.delete(todo.id);
+  }
+
+  getAll() {
+    this.todoService.getAll();
+  }
+
+  update(todo: Todo) {
+    this.todoService.update(todo);
   }
 
 }

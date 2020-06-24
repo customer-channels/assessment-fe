@@ -1,1 +1,5 @@
-<p>todo-list-container works!</p>
+<app-todo-list 
+    [gridData]="entities$ | async"
+    [gridLoading]="loading$ | async">
+</app-todo-list>
+
