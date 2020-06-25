@@ -1,12 +1,9 @@
 export class Todo {
     id: number;
-    name: string;
-    description: string;
-    status: EStatus;
+    title: string;
+
+    constructor(title: string) {
+        this.title = title;
+    }
 }
 
-export enum EStatus {
-    TODO = 'TODO',
-    DOING = 'DOING',
-    DONE = 'DONE'
-}

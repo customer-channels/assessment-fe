@@ -1,5 +1,7 @@
 <app-todo-list 
     [gridData]="entities$ | async"
-    [gridLoading]="loading$ | async">
+    [gridLoading]="loading$ | async"
+    (addTodo)="add($event)"
+    (deleteTodo)=delete($event)>
 </app-todo-list>
 

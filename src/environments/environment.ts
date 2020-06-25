@@ -8,8 +8,7 @@ export const BASE_URL = 'http://localhost:8080/';
 export const environment = {
   production: false,
 
-  todoApiUrl: `${BASE_URL}todo`,
-  todosApiUrl: `${BASE_URL}todos`
+  todoApiUrl: `${BASE_URL}todo/`,
 
 };
 

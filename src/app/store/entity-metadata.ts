@@ -12,4 +12,13 @@ export const entityConfig = {
     entityMetadata
 };
 
+export const defaultDataServiceConfig: DefaultDataServiceConfig = {
+    entityHttpResourceUrls: {
+        Todo: {
+            entityResourceUrl: `${environment.todoApiUrl}`,
+            collectionResourceUrl: `${environment.todoApiUrl}`,
+        }
+    }
+};
+
 

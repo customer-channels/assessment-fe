@@ -1,1 +1,30 @@
-<p>todo-list works!</p>
+<div>
+    <form [formGroup]="addTodoForm" (keydown)="onEnterKeyPressed($event)">
+        <input type="text" size="1" placeholder="Add a Todo" id="addTodo" class="form-control" formControlName="title" />
+    </form>
+    <br><br>
+    <kendo-grid [kendoGridBinding]="gridData" [loading]="gridLoading" [selectable]="selectableSettings"
+        [pageSize]="10" [pageable]="{pageSizes: [10, 25, 50]}" [filterable]="true"
+        [kendoGridSelectBy]="gridSelectionHandler" [selectedKeys]="selectedItems">
+        <kendo-grid-checkbox-column></kendo-grid-checkbox-column>
+        <kendo-grid-column field="id" title="Task Id" filter="numeric" format="integer">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span
+                    [ngStyle]="{'text-decoration': isSelectedItem(dataItem) ?'line-through' : 'none'}">{{dataItem.id}}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="title" title="Title">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span
+                    [ngStyle]="{'text-decoration': isSelectedItem(dataItem) ?'line-through' : 'none'}">{{dataItem.title}}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-command-column>
+            <ng-template kendoGridCellTemplate let-dataItem>
+              <button  kendoGridRemoveCommand (click)="removeItem(dataItem)">
+                <img alt="" class="mixButton__icon ico--sm" src="./assets/images/delete.png" />
+              </button>
+            </ng-template>
+          </kendo-grid-command-column>
+    </kendo-grid>
+</div>
