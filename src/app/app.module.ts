@@ -4,17 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import { TodoTasksAppCardComponent } from './home/components/todo-tasks-app-card/todo-tasks-app-card.component';
 import { entityConfig, defaultDataServiceConfig } from './store/entity-metadata';
 import { EntityDataModule, DefaultDataServiceConfig } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -25,18 +24,17 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TodoTasksAppCardComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
 
-    MatCardModule,
-    MatButtonModule,
+    AppRoutingModule,
 
     HttpClientModule,
+
+    SharedModule,
 
     TranslateModule.forRoot({
       loader: {
@@ -49,13 +47,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
-
-    ToastrModule.forRoot({
-      timeOut: 7000,
-      positionClass: 'toast-bottom-full-width',
-      closeButton: true,
-      enableHtml: true
-  }),
+    !environment.production ?
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }) : [],
 
   ],
   providers: [{ provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig }],

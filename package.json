@@ -27,6 +27,7 @@
     "@ngrx/effects": "^9.2.0",
     "@ngrx/entity": "^9.2.0",
     "@ngrx/store": "^9.2.0",
+    "@ngrx/store-devtools": "^9.2.0",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^5.0.0",
     "@progress/kendo-angular-buttons": "^5.4.2",

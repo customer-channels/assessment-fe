@@ -33,28 +33,24 @@ export class TodoListContainerComponent implements OnInit {
       `ADDED todo task with id ${response.id} and title ${response.title}`;
       this.toastr.success(successMsg);
   }, errorResp => {
-      const errorMsg = `${errorResp.error.error.errors[0]}`;
-      this.toastr.error(errorMsg ? errorMsg : 'Unexpected error');
+    const errorMsg = errorResp.message;
+    this.toastr.error(errorMsg ? errorMsg : 'Unexpected error');
   });
   }
 
   delete(todo: Todo) {
     this.todoService.delete(todo.id).subscribe((response: any) => {
       const successMsg =
-      `REMOVED todo task with ${todo.id} `;
+      `REMOVED todo task with id ${todo.id} `;
       this.toastr.success(successMsg);
   }, errorResp => {
-      const errorMsg = `${errorResp.error.error.errors[0]}`;
-      this.toastr.error(errorMsg ? errorMsg : 'Unexpected error');
+    const errorMsg = errorResp.message;
+    this.toastr.error(errorMsg ? errorMsg : 'Unexpected error');
   });
   }
 
   getAll() {
     this.todoService.getAll();
-  }
-
-  update(todo: Todo) {
-    this.todoService.update(todo);
   }
 
 }
