@@ -6,6 +6,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoService } from './services/todo.service';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
     { path: '', component: TodoListContainerComponent}
@@ -18,9 +19,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        GridModule,
-        FormsModule,
-        ReactiveFormsModule
+        SharedModule
     ],
     providers: [TodoService]
 })

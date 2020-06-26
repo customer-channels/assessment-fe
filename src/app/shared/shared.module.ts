@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,6 +15,10 @@ import { ToastrModule } from 'ngx-toastr';
 
     MatCardModule,
     MatButtonModule,
+
+    GridModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     ToastrModule.forRoot({
       timeOut: 7000,
@@ -26,6 +32,9 @@ import { ToastrModule } from 'ngx-toastr';
   exports: [
     MatCardModule,
     MatButtonModule,
+    GridModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 
 

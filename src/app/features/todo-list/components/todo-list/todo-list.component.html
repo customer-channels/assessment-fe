@@ -4,7 +4,7 @@
     </form>
     <br><br>
     <kendo-grid [kendoGridBinding]="gridData" [loading]="gridLoading" [selectable]="selectableSettings"
-        [pageSize]="10" [pageable]="{pageSizes: [10, 25, 50]}" [filterable]="true"
+        [pageSize]="5" scrollable="none" [pageable]="{pageSizes: [5, 10, 20]}" [filterable]="true"
         [kendoGridSelectBy]="gridSelectionHandler" [selectedKeys]="selectedItems">
         <kendo-grid-checkbox-column></kendo-grid-checkbox-column>
         <kendo-grid-column field="id" title="Task Id" filter="numeric" format="integer">
