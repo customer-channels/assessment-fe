@@ -3,9 +3,8 @@ import { environment } from 'src/environments/environment';
 
 
 
-
 const entityMetadata: EntityMetadataMap = {
-    Todo: {},
+    Todo: {entityDispatcherOptions: {optimisticAdd: false, optimisticDelete:  false}}
 };
 
 export const entityConfig = {
