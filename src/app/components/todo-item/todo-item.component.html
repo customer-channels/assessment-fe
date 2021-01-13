@@ -1,0 +1,6 @@
+<li class="todo-item">
+    <input class="todo-checkbox" type="checkbox" name="todo-checkbox" id="todo-checkbox" [(ngModel)]="item.completed">
+    <div *ngIf="!item.editing" class="todo-label" [ngClass]="{'completed': item.completed}" (dblclick)="editItem()">{{item.text}}</div>
+    <input *ngIf="item.editing" type="text" class="todo-edit" [(ngModel)]="item.text" autofocus (blur)="finishEditing()" (keyup.enter)="finishEditing()" (keyup.esc)="cancelEditing()">
+    <div class="todo-remove" (click)="deleteItem()">&times;</div>
+</li>

@@ -1,0 +1,34 @@
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+  }
+
+  .todo-checkbox {
+    margin: 0 0.75em 0 0;
+  }
+
+  .todo-label {
+    flex: 2; 
+    border: 1px solid transparent;
+    padding: 0.5em;
+
+    &.completed {
+      color: lightgrey;
+      text-decoration: line-through;
+    }
+  }
+
+  .todo-edit {
+    flex: 2; 
+    color: black; 
+    border: 1px solid black;
+    padding: 0.5em;
+    font-size: 1rem;
+  }
+
+  .todo-remove {
+    cursor: pointer;
+    margin: 0 0 0 0.75em;
+  }

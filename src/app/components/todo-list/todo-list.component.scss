@@ -1,0 +1,32 @@
+.todo-input {
+  width: 100%;
+  box-sizing: border-box;
+  color: black; 
+  border: 1px solid black;
+  padding: 0.5em;
+  font-size: 1rem;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0 0 1em 0;
+  margin: 1em 0;
+  border-bottom: 1px solid lightgrey;
+}
+
+.todo-actions {
+  button {
+    font-size: 1rem;
+    border: 1px solid grey;
+    padding: 0.5rem;
+    background-color: lightblue;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+  }
+}

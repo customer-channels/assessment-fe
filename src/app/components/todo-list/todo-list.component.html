@@ -1,0 +1,14 @@
+<input type="text" name="todo" id="todo" class="todo-input" placeholder="enter your todo" [(ngModel)]="todoTextInput" (keyup.enter)="addItem()">
+
+<p *ngIf="todos.length <= 0">You have no todos</p>
+
+<ul *ngIf="todos.length > 0" class="todo-list">
+    <app-todo-item  
+        *ngFor="let item of todos" 
+        [item]="item">
+    </app-todo-item>
+</ul>
+
+<div class="todo-actions">
+    <button class="action-remove-completed" (click)="clearCompleted()">Remove completed tasks</button>
+</div>
