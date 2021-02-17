@@ -34,6 +34,71 @@
     align-items: center;
   }
 
+  .inputFieldWrapper{
+    width: 80%;
+    margin-bottom: 10px;
+  }
+
+  .inputLabel {
+    margin-right: 5px;
+    font-weight: 600;
+  }
+
+  .taskInputField {
+    width: 90%;
+  }
+
+  .itemsContainer{
+    list-style: none;
+    padding:0;
+    margin:0;
+    width: 80%;
+    color: white;
+    font-weight: 600;
+  }
+
+  .todoItem {
+    height:25px;
+    width:100%;
+    margin:4px 0;
+    padding:10px 0;
+    background-color: #1a76d2a3;
+    border-radius: 5px;
+  }
+
+  .todoContent {
+    margin: 0 10px;
+  }
+
+  .deleteButton {
+    float: right;
+    box-shadow:inset 0px 1px 0px 0px #f29c93;
+    background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+    background-color:#fe1a00;
+    border-radius:6px;
+    border:1px solid #d83526;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:14px;
+    font-weight:bold;
+    padding:4px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #b23e35;
+  }
+  .deleteButton:hover {
+    background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+    background-color:#ce0100;
+  }
+  .deleteButton:active {
+    position:relative;
+    top:1px;
+  }
+
+  input[type=checkbox]:checked + span {
+    text-decoration: line-through;
+  }
+
 </style>
 
 <!doctype html>
@@ -55,6 +120,30 @@
 </div>
 
 <div class="content" role="main">
+
+  <h2>My todo list</h2>
+
+  <!--Division for taking input from user -->
+  <div class="inputFieldWrapper">
+    <span class="inputLabel">Add task</span>
+    <input [(ngModel)]="newTask" type="text"
+           value="" class="taskInputField"
+           (keydown.enter)="addTask()">
+  </div>
+
+  <!--Tasks added repeated divisions-->
+  <ul *ngFor="let todo of todos | async; let index = index;" class="itemsContainer">
+
+    <li class="todoItem">
+      <div class="todoContent">
+        <input type="checkbox" value="{{todo.checked}}" data-id="{{todo.id}}" (click)="checkTask(todo.id)" [checked]="todo.checked"/>
+        <span class="description"> {{ todo.description }}</span>
+        <input type="button" (click)="deleteTask(todo.id)" class="deleteButton" value="Delete">
+      </div>
+    </li>
+
+  </ul>
+
 </div>
 
 
