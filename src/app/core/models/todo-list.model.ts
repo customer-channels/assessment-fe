@@ -5,8 +5,10 @@ import { Todo } from "./todo.model";
  */
 export interface TodoList
 {
-    // optional name for list
-    name?: string;
     // array of Todos
     todos: Todo[];
+    // required add method
+    add(todo: Todo): void;
+    // required remove method
+    remove(todo: Todo): void;
 }
