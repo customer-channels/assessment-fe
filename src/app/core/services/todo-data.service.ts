@@ -30,7 +30,7 @@ export class TodoDataService {
     // give a unique id
     todo.id = uuidv4();
     // add todo to array
-    this.todos.push(todo);
+    if(todo.id) this.todos.push(todo);
   }
 
   /**
