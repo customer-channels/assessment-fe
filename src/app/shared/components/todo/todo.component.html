@@ -1,11 +1,11 @@
 <li class="list-group-item todo-item">
     <div class="row">
-        <div class="col col-8">
+        <div class="col col-9">
             <span [ngClass]="{'complete': todo.complete, 'incomplete': !todo.complete}"> 
                 {{todo.title}} 
             </span>
         </div>
-        <div class="col col-4">
+        <div class="col col-3">
             <input class="form-check-input" type="checkbox" (click)="toggleComplete( todo )">
         
             <button class="btn btn-default btn-xs remove-btn" (click)="remove( todo )"> 
