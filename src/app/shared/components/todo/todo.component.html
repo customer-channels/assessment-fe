@@ -1,1 +1,6 @@
-<p>todo works!</p>
+<li class="list-group-item">
+    <span [ngClass]="{'complete': todo.complete, 'incomplete': !todo.complete}"> 
+        {{todo.title}} 
+    </span>
+    <input class="form-check-input me-1" type="checkbox" (click)="toggleComplete( todo )">
+</li>

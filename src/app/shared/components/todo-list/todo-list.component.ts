@@ -1,37 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoList } from 'src/app/core/models/todo-list.model';
 import { Todo } from 'src/app/core/models/todo.model';
+import { TodoDataService } from 'src/app/core/services/todo-data.service';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit, TodoList {
+export class TodoListComponent implements TodoList {
 
-  // initialize empty string
-  public listName: string = '';
+  // local new todo object
+  public newTodo: Todo = new Todo();
 
-  // initialize empty list
-  public todos: Todo[] = [];
+  // init data service
+  constructor(private todoDataService: TodoDataService) 
+  { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-    // load default todos using service
+  // getter for todos data state
+  get todos(): Todo[] 
+  {
+    return this.todoDataService.getTodos();
   }
 
-  public add( todo: Todo )
+  /**
+   * call to service function add
+   */
+  public addTodo(): void
   {
-    this.todos.push(todo)
-    // update state using service
+    // add new todo instance
+    this.todoDataService.add(this.newTodo);
+    // return to default state
+    this.newTodo = new Todo();
+    // debug
+    console.log(this.todos);
   }
 
-  //
-  public remove( selectedTodo: Todo )
+  /**
+   * call to service function remove
+   * @param selectedTodo 
+   */
+  public remove( selectedTodo: Todo ): void
   {
-    this.todos = this.todos.filter( todo => todo !== selectedTodo )
-    // update state using service
+    this.todoDataService.remove( selectedTodo );
   }
 
 }

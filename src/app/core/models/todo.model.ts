@@ -4,11 +4,11 @@
 export class Todo
 {
     // UUID identifier
-    private id: string;
+    public id: string;
     // name of the task
     public title: string;
     // completion status
-    public complete: boolean;
+    public complete: boolean = false;
 
     /**
      * @constructor Property instantiation through params.

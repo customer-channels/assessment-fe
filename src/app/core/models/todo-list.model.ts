@@ -7,8 +7,8 @@ export interface TodoList
 {
     // array of Todos
     todos: Todo[];
-    // required add method
-    add(todo: Todo): void;
-    // required remove method
-    remove(todo: Todo): void;
+    // optional add method
+    addTodo?: () => void;
+    // optional remove method
+    remove?: (todo: Todo) => void;
 }

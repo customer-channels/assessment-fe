@@ -1,1 +1,19 @@
-<p>todo-list Rocks!</p>
+<div class="header">
+    <h1>Todos</h1>
+    <input  class="new-todo" 
+            placeholder="What's next on the list?" 
+            [(ngModel)]="newTodo.title" 
+            (keyup.enter)="addTodo()">
+</div>
+
+<ul class="list-group" *ngIf="this.todos.length; else emptyList">
+
+    <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+    
+</ul>
+
+<ng-template class="empty-section" #emptyList>
+
+    <span>This list is empty... Add a new item!</span>
+
+</ng-template>
