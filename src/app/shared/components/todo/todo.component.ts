@@ -7,19 +7,30 @@ import { TodoDataService } from 'src/app/core/services/todo-data.service';
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
 
-  @Input() public todo: Todo;
+  // init default
+  @Input() public todo: Todo = {id: '', title: '', complete: false};
 
+  // init data service
   constructor(private todoDataService: TodoDataService) { }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * call to service toggle complete state
+   * @param todo 
+   */
   public toggleComplete( todo: Todo ): void
   {
     this.todoDataService.toggleComplete(todo);
   }
 
+  /**
+   * call to service function remove
+   * @param selectedTodo 
+   */
+  public remove( todo: Todo ): void
+  {
+    this.todoDataService.remove( todo );
+  }
 
 }

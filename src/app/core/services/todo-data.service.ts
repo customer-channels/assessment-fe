@@ -50,5 +50,6 @@ export class TodoDataService {
   public remove(selectedTodo: Todo): void
   {
     this.todos = this.todos.filter( todo => todo !== selectedTodo )
+    console.log(this.todos);
   }
 }

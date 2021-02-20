@@ -36,13 +36,4 @@ export class TodoListComponent implements TodoList {
     console.log(this.todos);
   }
 
-  /**
-   * call to service function remove
-   * @param selectedTodo 
-   */
-  public remove( selectedTodo: Todo ): void
-  {
-    this.todoDataService.remove( selectedTodo );
-  }
-
 }
