@@ -1,7 +1,7 @@
 <li class="list-group-item">
-    <span [ngClass]="{'complete': todo.complete, 'incomplete': !todo.complete}"> 
-        {{todo.title}} 
-    </span>
-    <input class="form-check-input me-1" type="checkbox" (click)="toggleComplete( todo )">
-    <button class="btn btn-default" (click)="remove( todo )"> <i class="bi bi-trash"></i> </button>
+        <span [ngClass]="{'complete': todo.complete, 'incomplete': !todo.complete}"> 
+            {{todo.title}} 
+        </span>
+        <input class="form-check-input" type="checkbox" (click)="toggleComplete( todo )">
+        <button class="btn btn-default" (click)="remove( todo )"> <i class="bi bi-trash"></i> </button>
 </li>
