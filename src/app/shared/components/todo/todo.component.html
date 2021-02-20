@@ -1,7 +1,7 @@
 <li class="list-group-item todo-item">
     <div class="row">
         <div class="col col-9">
-            <span [ngClass]="{'complete': todo.complete, 'incomplete': !todo.complete}"> 
+            <span [class.complete]="todo.complete"> 
                 {{todo.title}} 
             </span>
         </div>
