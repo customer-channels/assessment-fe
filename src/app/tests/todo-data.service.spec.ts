@@ -7,8 +7,37 @@ describe('TodoDataService', () => {
   let service: TodoDataService;
 
   beforeEach(() => {
+    // inject needed service
     TestBed.configureTestingModule({});
     service = TestBed.inject(TodoDataService);
+
+    // create mock local storage system
+    let store = {};
+    const mockLocalStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+
+    // intercept local storage method calls
+    spyOn(localStorage, 'getItem')
+    .and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem')
+      .and.callFake(mockLocalStorage.setItem);
+    spyOn(localStorage, 'removeItem')
+      .and.callFake(mockLocalStorage.removeItem);
+    spyOn(localStorage, 'clear')
+      .and.callFake(mockLocalStorage.clear);
+
   });
 
   it('should be created', () => {
@@ -21,13 +50,34 @@ describe('TodoDataService', () => {
 
   describe('#getAllTodos()', () => {
 
-    localStorage.removeItem('todoList');
-
     it('should return an empty array by default', inject([TodoDataService], (service: TodoDataService) => {
-      expect(service.getTodos('todoList')).toEqual([]);
+      expect(service.getTodos()).toEqual([]);
     }));
 
+    it('should return a list with current todos', inject([TodoDataService], (service: TodoDataService) => {
+      let todoA = new Todo();
+      let todoB = new Todo();
+      todoA.title = 'Check my email';
+      todoB.title = 'Test my software';
+      service.add(todoA);
+      service.add(todoB);
+      expect(service.getTodos()).toEqual([todoA, todoB]);
+    }));
+  });
 
+  describe('#remove(selectedTodo)', () => {
+
+    it('should remove a todo selected by the user', inject([TodoDataService], (service: TodoDataService) => {
+      let todoA = new Todo({title: 'Build a house', complete: false});
+      let todoB = new Todo({title: 'Drink some coffee', complete: true});
+      service.add(todoA);
+      service.add(todoB);
+      expect(service.getTodos()).toEqual([todoA, todoB]);
+      service.remove(todoB);
+      expect(service.getTodos()).toEqual([todoA]);
+      service.remove(todoA);
+      expect(service.getTodos()).toEqual([]);
+    }));
   });
 
 });

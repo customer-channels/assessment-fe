@@ -20,7 +20,7 @@ export class TodoListComponent implements TodoList {
   // getter for todos data state
   get todos(): Todo[] 
   {
-    return this.todoDataService.todos;
+    return this.todoDataService.getTodos();
   }
 
   /**

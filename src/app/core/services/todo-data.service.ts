@@ -16,15 +16,15 @@ export class TodoDataService {
 
   // init todo list
   constructor(){ 
-    this.getTodos('todoList');
+    this.getLocalStorage('todoList');
   }
 
   /**
    * simple getter for all Todos
    */
-  public getTodos(key: string): Todo[]
+  public getTodos(): Todo[]
   {
-    return this.getLocalStorage(key);
+    return this.todos;
   }
 
   /**
