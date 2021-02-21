@@ -10,15 +10,17 @@ export class TodoDataService {
   // local data state for todos
   public todos: Todo[] = [];
 
-  // init empty
-  constructor(){ }
+  // init todo list
+  constructor(){ 
+    this.getTodos('todoList');
+  }
 
   /**
    * simple getter for all Todos
    */
-  public getTodos(): Todo[]
+  public getTodos(key: string): Todo[]
   {
-    return this.todos;
+    return this.getToLocalStorage(key);
   }
 
   /**
@@ -29,8 +31,14 @@ export class TodoDataService {
   {
     // give a unique id
     todo.id = uuidv4();
-    // add todo to array
-    if(todo.id) this.todos.push(todo);
+    
+    if(todo.id)
+    {
+      // add todo to array
+      this.todos.push(todo);
+      // save data to local storage
+      this.setLocalStorage('todoList', this.todos);
+    }
   }
 
   /**
@@ -39,8 +47,10 @@ export class TodoDataService {
    */
   public toggleComplete(todo: Todo): void
   {
+    // toggle complete value
     todo.complete = !todo.complete;
-    console.log(this.todos);
+    // save data to local storage
+    this.setLocalStorage('todoList', this.todos);
   }
 
   /**
@@ -49,7 +59,34 @@ export class TodoDataService {
    */
   public remove(selectedTodo: Todo): void
   {
+    // filter selected value
     this.todos = this.todos.filter( todo => todo !== selectedTodo )
-    console.log(this.todos);
+    // save data to local storage
+    this.setLocalStorage('todoList', this.todos);
+  }
+
+  /**
+   * Saves list as key-value pair to persistent local storage
+   * @param key   | string identifier
+   * @param value | Todo[] list to save
+   */
+  public setLocalStorage(key: string, value: Todo[]): void
+  {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  /**
+   * Loads list given its correspondent local storage key
+   * @param key | Todo[] list to get
+   */
+  public getToLocalStorage(key: string): Todo[]
+  {
+    // check if Storage entry exists
+    if(localStorage.getItem(key) !== null)
+      // then update local parsed values
+      this.todos = JSON.parse(localStorage.getItem(key));
+
+    // return local todos
+    return this.todos;
   }
 }

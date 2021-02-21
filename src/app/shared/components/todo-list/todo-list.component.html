@@ -5,15 +5,16 @@
             [(ngModel)]="newTodo.title" 
             (keyup.enter)="addTodo()">
 </div>
+<div class="list-section">
+    <ul class="list-group" *ngIf="this.todos.length; else emptyList">
 
-<ul class="list-group" *ngIf="this.todos.length; else emptyList">
+        <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+        
+    </ul>
 
-    <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
-    
-</ul>
+    <ng-template class="empty-section" #emptyList>
 
-<ng-template class="empty-section" #emptyList>
+        <span>This list is empty... Add a new item!</span>
 
-    <span>This list is empty... Add a new item!</span>
-
-</ng-template>
+    </ng-template>
+</div>
