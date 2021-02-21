@@ -48,7 +48,7 @@ describe('TodoDataService', () => {
     expect(service).toBeTruthy();
   }));
 
-  describe('#getAllTodos()', () => {
+  describe('#getTodos()', () => {
 
     it('should return an empty array by default', inject([TodoDataService], (service: TodoDataService) => {
       expect(service.getTodos()).toEqual([]);
@@ -65,6 +65,16 @@ describe('TodoDataService', () => {
     }));
   });
 
+  describe('#add(todo)', () => {
+
+    it('should add a new todo to the current list', inject([TodoDataService], (service: TodoDataService) => {
+      expect(service.getTodos()).toEqual([]);
+      let todoA = new Todo({title: 'Learning React Native', complete: false});
+      service.add(todoA);
+      expect(service.getTodos()).toEqual([todoA]);
+    }));
+  });
+
   describe('#remove(selectedTodo)', () => {
 
     it('should remove a todo selected by the user', inject([TodoDataService], (service: TodoDataService) => {
@@ -77,6 +87,18 @@ describe('TodoDataService', () => {
       expect(service.getTodos()).toEqual([todoA]);
       service.remove(todoA);
       expect(service.getTodos()).toEqual([]);
+    }));
+  });
+
+  describe('#toggleComplete(todo)', () => {
+
+    it('should invert the complete property value', inject([TodoDataService], (service: TodoDataService) => {
+      let todoA = new Todo({title: 'Build a house', complete: false});
+      service.add(todoA);
+      service.toggleComplete(todoA);
+      expect(todoA.complete).toEqual(true);
+      service.toggleComplete(todoA);
+      expect(todoA.complete).toEqual(false);
     }));
   });
 
