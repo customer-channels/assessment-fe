@@ -24,7 +24,7 @@ export class TodoDataService {
    */
   public getTodos(key: string): Todo[]
   {
-    return this.getToLocalStorage(key);
+    return this.getLocalStorage(key);
   }
 
   /**
@@ -83,7 +83,7 @@ export class TodoDataService {
    * Loads list given its correspondent local storage key
    * @param key | Todo[] list to get
    */
-  public getToLocalStorage(key: string): Todo[]
+  public getLocalStorage(key: string): Todo[]
   {
     // check if Storage entry exists
     if(localStorage.getItem(key) !== null)
