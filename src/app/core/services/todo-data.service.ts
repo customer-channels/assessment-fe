@@ -3,9 +3,8 @@ import { Todo } from '../models/todo.model';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
- * Service managing single source of truth for Todo list app
+ * Service managing single source of truth for Todo list data
  * @ref https://en.wikipedia.org/wiki/Single_source_of_truth
- * 
  */
 @Injectable({
   providedIn: 'root'
