@@ -32,8 +32,6 @@ export class TodoListComponent implements TodoList {
     this.todoDataService.add(this.newTodo);
     // return to default state
     this.newTodo = new Todo();
-    // debug
-    console.log(this.todos);
   }
 
 }
