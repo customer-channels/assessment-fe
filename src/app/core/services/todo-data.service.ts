@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo.model';
 import { v4 as uuidv4 } from 'uuid';
+import { environment } from 'src/environments/environment';
 
 /**
  * Service managing single source of truth for Todo list data
@@ -16,7 +17,7 @@ export class TodoDataService {
 
   // init todo list
   constructor(){ 
-    this.getLocalStorage('todoList');
+    this.getLocalStorage( environment.listName );
   }
 
   /**
@@ -41,7 +42,7 @@ export class TodoDataService {
       // add todo to array
       this.todos.push(todo);
       // save data to local storage
-      this.setLocalStorage('todoList', this.todos);
+      this.setLocalStorage( environment.listName , this.todos);
     }
   }
 
@@ -54,7 +55,7 @@ export class TodoDataService {
     // toggle complete value
     todo.complete = !todo.complete;
     // save data to local storage
-    this.setLocalStorage('todoList', this.todos);
+    this.setLocalStorage( environment.listName , this.todos);
   }
 
   /**
@@ -66,7 +67,7 @@ export class TodoDataService {
     // filter selected value
     this.todos = this.todos.filter( todo => todo !== selectedTodo )
     // save data to local storage
-    this.setLocalStorage('todoList', this.todos);
+    this.setLocalStorage( environment.listName , this.todos);
   }
 
   /**
